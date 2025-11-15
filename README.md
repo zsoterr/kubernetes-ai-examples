@@ -16,7 +16,7 @@ The goal is to:
 
 ## Key features
 - Technologies used: `Kubernetes v1.3x`, `Python 3.xx`, `Terraform`, `Helm`
-- Architecture: `<under construction> …`
+- Architecture: will be documented when the first project is fully ready.
 
 - License: **MIT License** – see `LICENSE` file. The license applies to the entire repo.
 
@@ -29,7 +29,7 @@ The goal is to:
 
 ## Projects
 1. **Kubernetes + ChatGPT Integration**  
-   folder: `project-k8s-kubectl/`  
-   Description: Example of how to manage your Kubernetes cluster,  analyze and respond to K8s events with the ChatGPT API in linux terminal (CLI).
+   **Folder:** `project-k8s-kubectl/`  
+   **Description:** Example of how to manage your Kubernetes cluster, analyze and respond to K8s events with the ChatGPT API in a Linux terminal (CLI).
 
 (More projects to come...)
