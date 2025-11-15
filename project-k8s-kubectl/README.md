@@ -1,1 +1,25 @@
+# project-k8s-kubectl
+Increase kubectl's  efficiently with AI capabilities
 
+## What is it and why?
+In this project, I will show you how to use capabilites of AI with kubectl in linux CLI, through a real-world examples. 
+The goal is to:
+-  provide you with practical examples if you are interested in Kubernetes cluster management from CLI with AI integration,
+-  give you with clear instructions on how to set up the environment and how you can use it to further develop it in your own environment
+
+
+## Key features
+- Technologies used: `Kubernetes v1.3x`, `Python 3.xx`,
+- Architecture: `<NA> …`
+- Important files & folders:
+  - `main.py` – entry point from Python  
+  - `index.html` – GUI / web interface 
+  - `README.md` – this file  
+- License: **MIT License** – see `LICENSE` file in the parent folder
+
+## Usage
+1. Pre-Requisites:
+2. Configuation:
+3. Start
+4. WebInterface
+5. Exit
