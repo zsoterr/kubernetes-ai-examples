@@ -15,7 +15,7 @@ The goal is to:
 -  introduce proven solutions that I also use occasionally in my <other> projects
 
 ## Key features
-- Technologies used: `Kubernetes v1.3x`, `Python 3.xx`, `Terraform`, `Helm`
+- Technologies used: `Kubernetes v1.33`, `Python 3`, `Terraform`, `Helm`
 - Architecture: will be documented when the first project is fully ready.
 
 - License: **MIT License** – see `LICENSE` file. The license applies to the entire repo.
@@ -28,9 +28,9 @@ The goal is to:
 ```
 
 ## Projects
-1. **Kubectl + ChatGPT Integration: kubectl-ai with UI**  
-   **Folder:** `project-k8s-kubectl/`  
-   **Description:** Example of how to manage your Kubernetes cluster, analyze and respond to K8s events with the ChatGPT API with kubectl-ai via a browser interface.
+1. **Kubectl + ChatGPT Integration: kubectl-ai with GUI**  
+   **Folder:** `project-k8s-kubectl-ai/`  
+   **Description:** Example of managing a Kubernetes cluster via a browser—through a graphical interface: Analyzing K8s events and responding to them using kubectl + ChatGPT API (with kubectl-ai).
 <img width="1306" height="798" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter" src="https://github.com/user-attachments/assets/fa3a4ee8-eb61-4180-9447-32b23e7f978b" />
 
 2. (More projects to come...)
