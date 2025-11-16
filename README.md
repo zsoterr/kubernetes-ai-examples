@@ -28,7 +28,7 @@ The goal is to:
 ```
 
 ## Projects
-1. **Kubernetes + ChatGPT Integration**  
+1. **Kubectl + ChatGPT Integration: kubectl-ai with UI**  
    **Folder:** `project-k8s-kubectl/`  
    **Description:** Example of how to manage your Kubernetes cluster, analyze and respond to K8s events with the ChatGPT API with kubectl-ai via a browser interface.
 <img width="1306" height="798" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter" src="https://github.com/user-attachments/assets/fa3a4ee8-eb61-4180-9447-32b23e7f978b" />
