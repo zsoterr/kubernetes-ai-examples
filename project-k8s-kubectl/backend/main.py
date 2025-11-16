@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 import subprocess
+import re  # for stripping ANSI codes and parsing output
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -10,7 +11,7 @@ templates = Jinja2Templates(directory="templates")
 
 class RunRequest(BaseModel):
     prompt: str
-    skip_permissions: bool = False  # NEW: controls --skip-permissions
+    skip_permissions: bool = False  # controls --skip-permissions
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -42,7 +43,7 @@ async def run_command(run_req: RunRequest):
         if run_req.skip_permissions:
             cmd.append("--skip-permissions")
 
-        # Finally append the prompt as positional argument
+        # Append the prompt as positional argument
         cmd.append(prompt)
 
         result = subprocess.run(
@@ -51,8 +52,39 @@ async def run_command(run_req: RunRequest):
             text=True,
         )
 
+        stdout_text = result.stdout or ""
+
+        # Try to extract the actual kubectl command from stdout.
+        # We handle both:
+        #   1) "Running: kubectl run ..."
+        #   2) Error case lines like "* kubectl run ..."
+        executed_kubectl = None
+        try:
+            # Remove ANSI color codes before parsing
+            ansi_escape = re.compile(r"\x1b\[[0-9;]*m")
+            cleaned = ansi_escape.sub("", stdout_text)
+
+            for line in cleaned.splitlines():
+                line_stripped = line.strip()
+
+                # Case 1: "Running: kubectl ..."
+                if line_stripped.lower().startswith("running:"):
+                    executed_kubectl = line_stripped[len("running:") :].strip()
+                    break
+
+                # Case 2: "* kubectl ..." (e.g. in "RunOnce" error messages)
+                if line_stripped.startswith("* "):
+                    candidate = line_stripped.lstrip("*").strip()
+                    if candidate.startswith("kubectl "):
+                        executed_kubectl = candidate
+                        break
+
+        except Exception:
+            executed_kubectl = None
+
         return {
-            "command": " ".join(cmd),
+            "command": " ".join(cmd),              # the kubectl-ai command
+            "executed_kubectl": executed_kubectl,  # the actual kubectl command (if detected)
             "stdout": result.stdout,
             "stderr": result.stderr,
             "returncode": result.returncode,
@@ -63,4 +95,3 @@ async def run_command(run_req: RunRequest):
             status_code=500,
             content={"error": f"Error while executing kubectl-ai: {e}"},
         )
-
