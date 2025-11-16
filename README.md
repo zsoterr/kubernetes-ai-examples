@@ -30,7 +30,8 @@ The goal is to:
 ## Projects
 1. **Kubectl + ChatGPT Integration: kubectl-ai with GUI**  
    **Folder:** `project-k8s-kubectl-ai-gui/`  
-   **Description:** Example of managing a Kubernetes cluster via a browser—through a graphical interface: Analyzing K8s events and responding to them using kubectl + ChatGPT API (with kubectl-ai).
+   **Description:** Example of managing a Kubernetes cluster via a browser—through a graphical interface: Analyzing K8s events and responding to them using kubectl + ChatGPT API (with kubectl-ai). \
+   **Note**: This project builds on top of Google’s kubectl-ai plugin. For installation and usage of kubectl-ai itself, see the official repository.
 <img width="1306" height="798" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter" src="https://github.com/user-attachments/assets/fa3a4ee8-eb61-4180-9447-32b23e7f978b" />
 
-2. (More projects to come...)
+3. (More projects to come...)
