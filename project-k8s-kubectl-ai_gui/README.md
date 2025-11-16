@@ -20,6 +20,9 @@ The goal is to:
   - `README.md` – this file  
 - License: **MIT License** – see `LICENSE` file in the parent folder
 
+## Security note
+This PoC is intended for **local** use on a jump-host or admin workstation. **Do not expose it directly on the internet** without authentication/proxying and controlled firewall rules.
+
 ## Usage
 1. **Pre-requisites**::
 - **Ubuntu Linux**:
