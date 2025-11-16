@@ -100,3 +100,16 @@ It's really **just a PoC**, using an openai API with a test kubernetes cluster.
 - security and performance-related sizing and configuration
 - validation of RPM-based Linux distribution
 - Run as pod in the Kubernetes cluster (K8s deployment, auth, RBAC)
+
+---------------
+## Some pictures during operation:
+
+without "Allow cluster changes" option:
+<img width="699" height="801" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter-2" src="https://github.com/user-attachments/assets/f5e7fc43-81a4-4ab7-9f9c-aa72619ccb68" />
+
+and with  "Allow cluster changes" option:
+
+<img width="1063" height="801" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter-3" src="https://github.com/user-attachments/assets/e011c66e-e4ed-49f5-a8ee-c0aee41a54a2" />
+
+
+
