@@ -65,6 +65,11 @@ The goal is to:
   You **have graphical interface**  where the FASTAPI is running and you want to use on the same host. \
   Just **open a browser** and **open this URL**: *http://localhost:8000* . \
   You will see the kubectl **web UI**, enter the prompt, "Run" and kubectl will run in the background on the jump host.
+
+  **Allow cluster changes**: \
+  By default, it is **not possible to modify or change** the cluster status. This means, for example, that you cannot start or delete a pod.
+If you want to perform such activities, you **must enable** this checkbox: "**Allow cluster changes**"
+
 8. **Exit**: \
 Close the browser and **identify** which **job** belongs to the FASTPI process:
   ```bash
