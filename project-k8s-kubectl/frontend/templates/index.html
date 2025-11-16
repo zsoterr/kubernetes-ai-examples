@@ -1,1 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>kubectl-ai Web UI (PoC)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+    <style>
+        body {
+            padding: 1.5rem;
+        }
+        textarea {
+            font-family: monospace;
+        }
+        pre {
+            background: #111827;
+            color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            max-height: 450px;
+            overflow: auto;
+        }
+        .command-line {
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        .history-entry {
+            /* marker class */
+        }
+    </style>
+</head>
+<body class="bg-light">
+<div class="container">
+    <h1 class="mb-3">kubectl-ai – minimal web UI (PoC)</h1>
+    <p class="text-muted mb-4">
+        Enter a prompt and click the run button. The backend will execute
+        <code>kubectl-ai</code> in your local environment.
+    </p>
+
+    <!-- NOTES SECTION -->
+    <div class="alert alert-info">
+        <strong>Notes:</strong>
+        <ul class="mb-0">
+            <li><strong>History limit:</strong> Only the latest <strong>20 entries</strong> are kept. Older entries are removed automatically.</li>
+            <li><strong>Clear history:</strong> The "Clear history" button removes <strong>all</strong> previous entries permanently.</li>
+            <li><strong>Filtering:</strong>
+                <br>- Type any keyword to filter by output.
+                <br>- Choose <strong>stdout</strong>, <strong>stderr</strong>, or <strong>both</strong> to filter only that section.
+                <br>- Example: type <code>error</code> and select <strong>stderr</strong> – only entries with "error" in stderr will be shown.
+            </li>
+            <li><strong>Copy command:</strong> Copies the exact <code>kubectl-ai --flags ...</code> command that was executed for that entry to your clipboard.</li>
+        </ul>
+    </div>
+
+    <!-- INPUT AREA -->
+    <div class="mb-3">
+        <label for="prompt" class="form-label">Prompt:</label>
+        <textarea
+            id="prompt"
+            class="form-control"
+            rows="5"
+            placeholder="Example: Analyze node status in the cluster and suggest improvements..."
+        ></textarea>
+
+        <!-- NEW: skip-permissions checkbox -->
+        <div class="form-check mt-2">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="skipPermissions"
+            />
+            <label class="form-check-label" for="skipPermissions">
+                Allow cluster changes (use <code>--skip-permissions</code>)
+            </label>
+        </div>
+        <p class="text-muted small mb-0">
+            When enabled, kubectl-ai will run mutating <code>kubectl</code> commands
+            (like <code>kubectl run</code>, <code>kubectl delete</code>) without asking for confirmation.
+        </p>
+    </div>
+
+    <!-- RUN BUTTON -->
+    <button id="runBtn" class="btn btn-primary mb-3" type="button" onclick="runKubectlAi()">
+        Run (kubectl-ai)
+    </button>
+
+    <!-- STATUS -->
+    <div id="status" class="mb-3 text-muted"></div>
+
+    <!-- FILTERING + CLEAR HISTORY -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="row g-2 align-items-end">
+                <div class="col-md-6">
+                    <label for="filterText" class="form-label">Filter history:</label>
+                    <input
+                        type="text"
+                        id="filterText"
+                        class="form-control"
+                        placeholder="Keyword to filter stdout/stderr..."
+                    />
+                </div>
+                <div class="col-md-3">
+                    <label for="filterField" class="form-label">Filter field:</label>
+                    <select id="filterField" class="form-select">
+                        <option value="both" selected>stdout + stderr</option>
+                        <option value="stdout">stdout only</option>
+                        <option value="stderr">stderr only</option>
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex justify-content-md-end">
+                    <button id="clearHistoryBtn" class="btn btn-outline-danger mt-3 mt-md-0" type="button">
+                        Clear history
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HISTORY -->
+    <h4 class="mt-2">Command history (max 20)</h4>
+    <div id="history" class="mt-2"></div>
+</div>
+
+<script>
+    function escapeHtml(text) {
+        if (!text) return "";
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    const MAX_HISTORY = 20;
+
+    async function runKubectlAi() {
+        const promptEl = document.getElementById("prompt");
+        const runBtn = document.getElementById("runBtn");
+        const statusEl = document.getElementById("status");
+        const historyEl = document.getElementById("history");
+        const skipPermissionsEl = document.getElementById("skipPermissions");
+
+        const prompt = promptEl.value.trim();
+        if (!prompt) {
+            statusEl.textContent = "Please enter a prompt.";
+            return;
+        }
+
+        const skipPermissions = skipPermissionsEl && skipPermissionsEl.checked;
+
+        runBtn.disabled = true;
+        statusEl.textContent = "Running...";
+
+        try {
+            const resp = await fetch("/run", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    prompt,
+                    skip_permissions: skipPermissions
+                })
+            });
+
+            const data = await resp.json();
+
+            if (!resp.ok) {
+                statusEl.textContent = data.error || "Unexpected error.";
+                runBtn.disabled = false;
+                return;
+            }
+
+            const now = new Date();
+            const timestamp = now.toLocaleString("en-US");
+
+            const entryHtml = `
+                <div class="card mb-3 history-entry">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">${escapeHtml(timestamp)}</span>
+                            <button class="btn btn-sm btn-outline-secondary copy-btn" type="button">
+                                Copy command
+                            </button>
+                        </div>
+                        <p class="command-line mb-2">
+                            <strong>Executed command:</strong>
+                            <span class="cmd-text">${escapeHtml(data.command || "")}</span>
+                        </p>
+                        <h5 class="mt-3">Output (stdout):</h5>
+                        <pre class="stdout">${escapeHtml(data.stdout || "")}</pre>
+                        <h5 class="mt-3">Errors / warnings (stderr):</h5>
+                        <pre class="stderr">${escapeHtml(data.stderr || "")}</pre>
+                        <p class="mt-2 text-muted">
+                            <strong>Return code:</strong> ${escapeHtml(String(data.returncode))}
+                        </p>
+                    </div>
+                </div>
+            `;
+
+            historyEl.insertAdjacentHTML("afterbegin", entryHtml);
+
+            while (historyEl.children.length > MAX_HISTORY) {
+                historyEl.removeChild(historyEl.lastElementChild);
+            }
+
+            statusEl.textContent = "Finished.";
+        } catch (e) {
+            statusEl.textContent = "Network/server error: " + e;
+        } finally {
+            runBtn.disabled = false;
+        }
+
+        applyFilter();
+    }
+
+    function clearHistory() {
+        const historyEl = document.getElementById("history");
+        historyEl.innerHTML = "";
+        document.getElementById("status").textContent = "History cleared.";
+    }
+
+    function applyFilter() {
+        const term = (document.getElementById("filterText").value || "").toLowerCase();
+        const field = document.getElementById("filterField").value;
+        const entries = document.querySelectorAll(".history-entry");
+
+        entries.forEach(entry => {
+            const stdoutText = entry.querySelector(".stdout").innerText.toLowerCase();
+            const stderrText = entry.querySelector(".stderr").innerText.toLowerCase();
+
+            let match = true;
+            if (term) {
+                if (field === "stdout") match = stdoutText.includes(term);
+                else if (field === "stderr") match = stderrText.includes(term);
+                else match = stdoutText.includes(term) || stderrText.includes(term);
+            }
+
+            entry.style.display = match ? "" : "none";
+        });
+    }
+
+    function setupEventHandlers() {
+        document.getElementById("clearHistoryBtn")
+            .addEventListener("click", clearHistory);
+
+        document.getElementById("filterText")
+            .addEventListener("keyup", applyFilter);
+
+        document.getElementById("filterField")
+            .addEventListener("change", applyFilter);
+
+        const historyEl = document.getElementById("history");
+        const statusEl = document.getElementById("status");
+
+        historyEl.addEventListener("click", async (e) => {
+            if (e.target && e.target.classList.contains("copy-btn")) {
+
+                const entry = e.target.closest(".history-entry");
+                const cmdText = entry.querySelector(".cmd-text").textContent;
+
+                try {
+                    await navigator.clipboard.writeText(cmdText);
+                    statusEl.textContent = "Command copied to clipboard.";
+                } catch (err) {
+                    statusEl.textContent = "Copy failed: " + err;
+                }
+            }
+        });
+    }
+
+    setupEventHandlers();
+</script>
+</body>
+</html>
 
