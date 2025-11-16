@@ -16,7 +16,7 @@ The goal is to:
 
 ## Key features
 - Technologies used: `Kubernetes v1.33`, `Python 3`, `Terraform`, `Helm`
-- Architecture: will be documented when the first project is fully ready.
+- Architecture: will be documented within the project folders
 
 - License: **MIT License** – see `LICENSE` file. The license applies to the entire repo.
 
