@@ -1,16 +1,17 @@
-# project-k8s-kubectl
+# project-k8s-kubectl-ai_GUI
 Increase kubectl's  efficiently with AI capabilities
 
 ## What is it and why?
-In this project, I will show you how to use capabilites of AI with kubectl in linux CLI, through a real-world examples. 
+In this project, I will show you how to use capabilites of AI with kubectl-ai on linux, through a real-world examples. 
 The goal is to:
--  provide you with practical examples if you are interested in Kubernetes cluster management from CLI with AI integration,
+-  provide you with practical examples if you are interested in Kubernetes cluster management with AI integration,
 -  give you with clear instructions on how to set up the environment and how you can use it to further develop it in your own environment
+- how you van use GUI with kubectl-ai binary
 
 
 ## Key features
-- Technologies used: `Kubernetes v1.3x`, `Python 3.xx`,
-- Architecture: `<NA> …`
+- Technologies used: `Kubernetes v1.33`, `Python 3`,
+- Architecture: To be determined later.
 - Important files & folders:
   - `main.py` – entry point from Python  
   - `index.html` – GUI / web interface 
@@ -107,7 +108,7 @@ It's really **just a PoC**, using an openai API with a test kubernetes cluster.
 without "Allow cluster changes" option:
 <img width="699" height="801" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter-2" src="https://github.com/user-attachments/assets/f5e7fc43-81a4-4ab7-9f9c-aa72619ccb68" />
 
-and with  "Allow cluster changes" option:
+and with  "Allow cluster changes":
 
 <img width="1063" height="801" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter-3" src="https://github.com/user-attachments/assets/e011c66e-e4ed-49f5-a8ee-c0aee41a54a2" />
 
