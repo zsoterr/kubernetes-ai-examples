@@ -1,22 +1,24 @@
-# project-k8s-kubectl-ai_gui
-Increase kubectl's  efficiently with AI capabilities
+# project-k8s-kubectl-ai-web-ui
+Increase kubectl's  efficiently with AI capabilities via WebUI
+
+## What this project does
+- Browser-based minimal web UI for kubectl-ai to manage Kubernetes clusters with natural language.
 
 ## What is it and why?
 In this project, I will show you how to use capabilites of AI with kubectl-ai on linux, through a real-world examples. 
 The goal is to:
 -  provide you with practical examples if you are interested in Kubernetes cluster management with AI integration,
 -  give you with clear instructions on how to set up the environment and how you can use it to further develop it in your own environment
-- how you van use GUI with kubectl-ai binary
+- how you van use UI with kubectl-ai binary
 
-## What this project does
-- Browser-based minimal web GUI for kubectl-ai to manage Kubernetes clusters with natural language.
+
 
 ## Key features
 - Technologies used: `Kubernetes v1.33`, `Python 3`,
 - Architecture: To be determined later.
 - Important files & folders:
   - `main.py` – entry point from Python  
-  - `index.html` – GUI / web interface 
+  - `index.html` – UI / web interface 
   - `README.md` – this file  
 - License: **MIT License** – see `LICENSE` file in the parent folder
 
