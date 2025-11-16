@@ -86,9 +86,12 @@ It's really **just a PoC**, using an openai API with a test kubernetes cluster.
 
 ## Planned changes in the near future:
 - add other providers as further  "alternative" options, currently we use this definition in the code: **kubectl-ai --llm-provider=openai --model=gpt-4.1** that means the provider and the parameters are "hard-coded"
+- context-switcher (kubeconfig)
+- "Generate only" vs. "Generate + Run" mode (separate button)
+- saved question-answer history (simple file or SQLite)
 - multi-user ennvironment,
 - "real" web server, enhanced UI
 - scalability,
 - security and performance-related sizing and configuration
 - validation of RPM-based Linux distribution
-- Run as pod in the Kubernetes cluster
+- Run as pod in the Kubernetes cluster (K8s deployment, auth, RBAC)
