@@ -1,4 +1,4 @@
-# project-k8s-kubectl-ai_GUI
+# project-k8s-kubectl-ai_gui
 Increase kubectl's  efficiently with AI capabilities
 
 ## What is it and why?
@@ -8,6 +8,8 @@ The goal is to:
 -  give you with clear instructions on how to set up the environment and how you can use it to further develop it in your own environment
 - how you van use GUI with kubectl-ai binary
 
+## What this project does
+- Browser-based minimal web GUI for kubectl-ai to manage Kubernetes clusters with natural language.
 
 ## Key features
 - Technologies used: `Kubernetes v1.33`, `Python 3`,
@@ -33,7 +35,9 @@ The goal is to:
     pip install -r requirements.txt
   ```
 - **Kubectl**:
-  You already **configured** the *kubeconfig* file and **kubectl** "**works**": that means you can interact with your Kubernetes cluster with kubectl. Validate it.
+  You must **configure** the *kubeconfig* file and ensure that **kubectl** "**works**": that means you can interact with your Kubernetes cluster with kubectl. Validate it.
+- **kubectl-ai**:
+  You already installed on the affected host. If not, install it now: https://github.com/GoogleCloudPlatform/kubectl-ai
 - **OPENAI**:
   You already have an OPENAI API KEY (if you don't have one yet, create one).
 3. **Configuation**:
