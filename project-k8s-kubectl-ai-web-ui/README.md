@@ -7,10 +7,9 @@ Increase kubectl's  efficiently with AI capabilities via WebUI
 ## What is it and why?
 In this project, I will show you how to use capabilites of AI with kubectl-ai on linux, through a real-world examples. 
 The goal is to:
--  provide you with practical examples if you are interested in Kubernetes cluster management with AI integration,
--  give you with clear instructions on how to set up the environment and how you can use it to further develop it in your own environment
-- how you van use UI with kubectl-ai binary
-
+- provide you with practical examples if you are interested in Kubernetes cluster management with AI integration,
+- give you with clear instructions on how to set up the environment and how you can use it to further develop it in your own environment
+- how to use the user interface with the kubectl binary file?
 
 
 ## Key features
