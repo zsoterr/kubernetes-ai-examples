@@ -122,6 +122,10 @@ and with  "Allow cluster changes" (you can make changes):
 
 
 ## Contributions:
-This project is provided as-is, primarily for educational and reference purposes.
-Feel free to fork and adapt it to your own use case.
-However, I am not currently accepting external pull requests due to limited review time.
+This project is provided as-is, primarily for educational and reference purposes. Feel free to fork and adapt it to your own use case. \
+However, I am not currently accepting external pull requests due to limited review time. 
+
+**Note:** **Discussions are open** for ideas, questions, and feedback.
+However, this project does not accept feature requests, bug reports, or pull requests.  
+Feel free to share ideas, but there is no guaranteed response time.
+
