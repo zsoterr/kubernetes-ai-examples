@@ -113,12 +113,15 @@ It's really **just a PoC**, using an openai API with a test kubernetes cluster.
 ---------------
 ## Some pictures during operation:
 
-without "Allow cluster changes" option:
+without "Allow cluster changes" option ("read-only" mode):
 <img width="699" height="801" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter-2" src="https://github.com/user-attachments/assets/f5e7fc43-81a4-4ab7-9f9c-aa72619ccb68" />
 
-and with  "Allow cluster changes":
+and with  "Allow cluster changes" (you can make changes):
 
 <img width="1063" height="801" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter-3" src="https://github.com/user-attachments/assets/e011c66e-e4ed-49f5-a8ee-c0aee41a54a2" />
 
 
-
+## Contributions:
+This project is provided as-is, primarily for educational and reference purposes.
+Feel free to fork and adapt it to your own use case.
+However, I am not currently accepting external pull requests due to limited review time.
