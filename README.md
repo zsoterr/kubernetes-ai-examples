@@ -35,3 +35,11 @@ The goal is to:
 <img width="1306" height="798" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter" src="https://github.com/user-attachments/assets/fa3a4ee8-eb61-4180-9447-32b23e7f978b" />
 
 3. (More projects to come...)
+
+-----------
+## Contribution Policy
+This repository is maintained as a curated, single-author collection of Kubernetes + AI examples.
+External pull requests and issue reports are not accepted, due to limited review time.
+
+**Discussions remain open** for feedback, questions, and ideas.
+Feel free to fork the projects and adapt them to your own use cases.
