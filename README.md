@@ -34,7 +34,16 @@ The goal is to:
    **Note**: This project builds on top of Google’s kubectl-ai plugin. For installation and usage of kubectl-ai itself, see the official repository.
 <img width="1306" height="798" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter" src="https://github.com/user-attachments/assets/fa3a4ee8-eb61-4180-9447-32b23e7f978b" />
 
-3. (More projects to come...)
+2. (More projects to come...)
+   
+-----------
+## Resources
+### Related blog posts
+
+- Medium: *Kubectl-ai WebUI: Making AI Kubernetes Debugging Browser-Friendly for All* – [https://medium.com/p/cc5dcf78d41f]
+- dev.to: 
+- Substack: 
+
 
 -----------
 ## Contribution Policy
