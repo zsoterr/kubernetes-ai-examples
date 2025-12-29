@@ -44,7 +44,7 @@ This PoC is intended for **local** use on a jump-host or admin workstation. **Do
   You already installed on the affected host. If not, install it now: https://github.com/GoogleCloudPlatform/kubectl-ai
 - **OPENAI**:
   You already have an OPENAI API KEY (if you don't have one yet, create one).
-3. **Configuation**:
+2. **Configuation**:
 - **main.py**:
   ```bash
     mkdir -p ~/kubectl-ai-web/templates && cd ~/kubectl-ai-web
@@ -52,7 +52,7 @@ This PoC is intended for **local** use on a jump-host or admin workstation. **Do
   **Create** the file with the right content (vi *~/kubectl-ai-web/main.py* ) **or** **copy** *main.py* file to this path: *~/kubectl-ai-web/main.py*
 - **index.html**: \
   **Create** the file with the right content (vi *~/kubectl-ai-web/templates/index.html* ) **or** **copy** *index.html* file to this path: *~/kubectl-ai-web/templates/index.html*
-5. **Start it**:
+3. **Start it**:
 - Running FASTAPI **locally** on loopback interface of local host: \
   **Note**: change the *$YOUR-OPENAI-API-KEY* before you run these commands:
   ```bash
@@ -61,7 +61,7 @@ This PoC is intended for **local** use on a jump-host or admin workstation. **Do
     export OPENAI_API_KEY=$YOUR-OPENAI-API-KEY
     uvicorn main:app --host 127.0.0.1 --port 8000 &
   ``` 
-6. **WebInterface**:
+4. **WebInterface**:
 - Option one: \
   You **don't have graphical interface** on host where the FASTAPI is running and you want to use it "remotely":
   ```bash
@@ -79,7 +79,7 @@ This PoC is intended for **local** use on a jump-host or admin workstation. **Do
   By default, it is **not possible to modify or change** the cluster status. This means, for example, that you cannot start or delete a pod.
 If you want to perform such activities, you **must enable** this checkbox: "**Allow cluster changes**"
 
-8. **Exit**: \
+5. **Exit**: \
 Close the browser and **identify** which **job** belongs to the FASTPI process:
   ```bash
     jobs
