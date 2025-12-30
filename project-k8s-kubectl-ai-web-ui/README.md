@@ -1,8 +1,10 @@
 # project-k8s-kubectl-ai-web-ui
 Increase kubectl's  efficiently with AI capabilities via WebUI
+<br/><br/>
 
 ## What this project does
 - Browser-based minimal web UI for kubectl-ai to manage Kubernetes clusters with natural language.
+<br/><br/>
 
 ## What is it and why?
 In this project, I will show you how to use capabilites of AI with kubectl-ai on linux, through a real-world examples. 
@@ -10,7 +12,7 @@ The goal is to:
 - provide you with practical examples if you are interested in Kubernetes cluster management with AI integration,
 - give you with clear instructions on how to set up the environment and how you can use it to further develop it in your own environment
 - how to use the user interface with the kubectl binary file?
-
+<br/><br/>
 
 ## Key features
 - Technologies used: `Kubernetes v1.33`, `Python 3`,
@@ -20,9 +22,11 @@ The goal is to:
   - `index.html` – UI / web interface 
   - `README.md` – this file  
 - License: **MIT License** – see `LICENSE` file in the parent folder
+<br/><br/>
 
 ## Security note
 This PoC is intended for **local** use on a jump-host or admin workstation. **Do not expose it directly on the internet** without authentication/proxying and controlled firewall rules.
+<br/><br/>
 
 ## Usage
 1. **Pre-requisites**::
@@ -89,6 +93,7 @@ Close the browser and **identify** which **job** belongs to the FASTPI process:
   ```bash
     kill -9 `jobs -p 1`
    ```
+<br/><br/>
 
 ## Note
 - This is the first version (v1), the goal was to have a working "demo" version: very basic, but I think it demonstrates well what it can be used for and how.
@@ -97,6 +102,8 @@ Close the browser and **identify** which **job** belongs to the FASTPI process:
 - single-user environment, no permission management, no database 
 
 It's really **just a PoC**, using an openai API with a test kubernetes cluster.
+<br/><br/>
+<br/><br/>
 
 ## Planned changes in the near future:
 - add other providers as further  "alternative" options, currently we use this definition in the code: **kubectl-ai --llm-provider=openai --model=gpt-4.1** that means the provider and the parameters are "hard-coded"
@@ -109,6 +116,7 @@ It's really **just a PoC**, using an openai API with a test kubernetes cluster.
 - security and performance-related sizing and configuration
 - validation of RPM-based Linux distribution
 - Run as pod in the Kubernetes cluster (K8s deployment, auth, RBAC)
+<br/><br/>
 
 ---------------
 ## Some pictures during operation:
@@ -119,11 +127,12 @@ without "Allow cluster changes" option ("read-only" mode):
 and with  "Allow cluster changes" (you can make changes):
 
 <img width="1063" height="801" alt="Project-kubectl-ai_ui_v1_Robert_Zsoter-3" src="https://github.com/user-attachments/assets/e011c66e-e4ed-49f5-a8ee-c0aee41a54a2" />
-
+<br/><br/>
 
 ## Contributions:
 This project is provided as-is, primarily for educational and reference purposes. Feel free to fork and adapt it to your own use case. \
 However, I am not currently accepting external pull requests due to limited review time. 
+<br/><br/>
 
 **Note:** **Discussions are open** for ideas, questions, and feedback.
 However, this project does not accept feature requests, bug reports, or pull requests.  
